@@ -1,0 +1,756 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>C&amp;M Invest — Formation &amp; accompagnement en investissement BRVM</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,900&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+  :root{
+    --bg:#F6F1E4;
+    --bg-alt:#EFE7D2;
+    --surface:#FFFFFF;
+    --surface-strong:#0A3A2D;
+    --text:#16281F;
+    --text-on-strong:#F1EAD9;
+    --text-muted:#5B6A5E;
+    --accent:#C9A227;
+    --accent-strong:#A9821A;
+    --accent-soft:#DCC067;
+    --border:rgba(15,50,38,0.15);
+    --border-strong:rgba(241,234,217,0.22);
+    --gain:#3E7D52;
+    --loss:#9A4A3A;
+    --shadow:0 18px 40px -22px rgba(10,40,30,0.35);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#0B1712;
+      --bg-alt:#0F2019;
+      --surface:#142A21;
+      --surface-strong:#071D16;
+      --text:#EFE7D6;
+      --text-on-strong:#F1EAD9;
+      --text-muted:#9BAA9E;
+      --accent:#E0B93A;
+      --accent-strong:#F0CC55;
+      --accent-soft:#B8912A;
+      --border:rgba(241,234,217,0.14);
+      --border-strong:rgba(241,234,217,0.18);
+      --gain:#63B37E;
+      --loss:#D2806B;
+      --shadow:0 18px 44px -20px rgba(0,0,0,0.6);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#0B1712;
+    --bg-alt:#0F2019;
+    --surface:#142A21;
+    --surface-strong:#071D16;
+    --text:#EFE7D6;
+    --text-on-strong:#F1EAD9;
+    --text-muted:#9BAA9E;
+    --accent:#E0B93A;
+    --accent-strong:#F0CC55;
+    --accent-soft:#B8912A;
+    --border:rgba(241,234,217,0.14);
+    --border-strong:rgba(241,234,217,0.18);
+    --gain:#63B37E;
+    --loss:#D2806B;
+    --shadow:0 18px 44px -20px rgba(0,0,0,0.6);
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:"IBM Plex Sans", ui-sans-serif, system-ui, "Segoe UI", sans-serif;
+    font-size:16px;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:"Fraunces", Georgia, "Iowan Old Style", serif;
+    font-weight:700;
+    line-height:1.1;
+    text-wrap:balance;
+    margin:0;
+    color:var(--text);
+  }
+  p{margin:0;}
+  a{color:inherit;}
+  .wrap{max-width:1120px;margin:0 auto;padding-inline:24px;}
+  .eyebrow{
+    font-family:"IBM Plex Mono", ui-monospace, SFMono-Regular, monospace;
+    font-size:12.5px;
+    letter-spacing:.09em;
+    text-transform:uppercase;
+    color:var(--accent-strong);
+    display:inline-flex;
+    align-items:center;
+    gap:.5em;
+  }
+  :root[data-theme="dark"] .eyebrow, @media (prefers-color-scheme: dark){ .eyebrow{color:var(--accent);} }
+  .num{font-family:"IBM Plex Mono", monospace; font-variant-numeric:tabular-nums;}
+  .btn{
+    display:inline-flex;align-items:center;gap:.55em;
+    font-family:"IBM Plex Sans",sans-serif;font-weight:600;font-size:15px;
+    padding:.85em 1.4em;border-radius:3px;text-decoration:none;
+    border:1.5px solid transparent;transition:transform .15s ease, background .2s ease, border-color .2s ease;
+    white-space:nowrap;
+  }
+  .btn:hover{transform:translateY(-1px);}
+  .btn:focus-visible{outline:2px solid var(--accent-strong);outline-offset:2px;}
+  .btn-gold{background:var(--accent);color:#0A3A2D;}
+  .btn-gold:hover{background:var(--accent-strong);}
+  .btn-ghost{border-color:var(--border-strong);color:var(--text-on-strong);}
+  .btn-ghost:hover{border-color:var(--accent);color:var(--accent);}
+  .btn-line{border-color:var(--border);color:var(--text);}
+  .btn-line:hover{border-color:var(--accent-strong);color:var(--accent-strong);}
+
+  /* ---------- NAV ---------- */
+  header.site{
+    position:sticky;top:0;z-index:40;
+    background:var(--surface-strong);
+    border-bottom:1px solid var(--border-strong);
+  }
+  .nav{
+    display:flex;align-items:center;justify-content:space-between;
+    padding-block:14px;gap:16px;
+  }
+  .brand{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0;}
+  .brand svg{width:34px;height:34px;flex-shrink:0;}
+  .brand-word{
+    font-family:"Fraunces",serif;font-weight:700;font-size:19px;letter-spacing:.01em;
+    color:var(--text-on-strong);
+  }
+  .brand-word b{color:var(--accent);font-weight:700;}
+  nav.links{display:flex;align-items:center;gap:28px;}
+  nav.links a{
+    font-size:14.5px;font-weight:500;text-decoration:none;color:var(--text-on-strong);
+    opacity:.85;
+  }
+  nav.links a:hover{opacity:1;color:var(--accent);}
+  .nav-cta{display:flex;align-items:center;gap:14px;}
+  .menu-btn{display:none;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    background:var(--surface-strong);
+    color:var(--text-on-strong);
+    padding-block:64px 44px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero .wrap{
+    display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center;position:relative;z-index:2;
+  }
+  .hero h1{color:var(--text-on-strong);font-size:clamp(34px,4.6vw,54px);}
+  .hero h1 mark{
+    background:var(--accent);color:var(--surface-strong);padding:.02em .18em;
+    box-decoration-break:clone;-webkit-box-decoration-break:clone;
+  }
+  .hero-sub{
+    margin-top:20px;max-width:46ch;font-size:17px;color:var(--text-on-strong);opacity:.86;
+  }
+  .hero-ctas{display:flex;gap:14px;margin-top:32px;flex-wrap:wrap;}
+  .hero-meta{
+    margin-top:34px;display:flex;gap:26px;flex-wrap:wrap;
+    border-top:1px solid var(--border-strong);padding-top:20px;
+  }
+  .hero-meta div{font-size:13px;color:var(--text-on-strong);opacity:.7;}
+  .hero-meta strong{display:block;font-family:"Fraunces",serif;font-size:20px;color:var(--accent);opacity:1;font-weight:700;}
+  .hero-art{display:flex;justify-content:center;}
+  .hero-art svg{width:100%;max-width:340px;height:auto;}
+
+  /* ---------- TICKER ---------- */
+  .ticker-band{
+    background:var(--bg-alt);border-bottom:1px solid var(--border);
+    overflow:hidden;padding-block:10px;
+  }
+  .ticker-label{
+    font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.08em;
+    color:var(--text-muted);text-transform:uppercase;
+    text-align:center;padding-bottom:6px;
+  }
+  .ticker-track{display:flex;width:max-content;animation:ticker 34s linear infinite;}
+  .ticker-track span{
+    font-family:"IBM Plex Mono",monospace;font-size:13.5px;padding-inline:22px;
+    white-space:nowrap;color:var(--text);border-right:1px solid var(--border);
+    font-variant-numeric:tabular-nums;
+  }
+  .ticker-track span b{font-weight:600;}
+  .up{color:var(--gain);}
+  .down{color:var(--loss);}
+  @keyframes ticker{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+  @media (prefers-reduced-motion: reduce){ .ticker-track{animation:none;} }
+
+  /* ---------- SECTION SHELL ---------- */
+  section{padding-block:76px;}
+  .section-head{max-width:640px;margin-bottom:44px;}
+  .section-head h2{font-size:clamp(26px,3vw,36px);margin-top:10px;}
+  .section-head p{margin-top:14px;color:var(--text-muted);font-size:16px;max-width:56ch;}
+  .alt{background:var(--bg-alt);}
+
+  /* ---------- FORMATIONS ---------- */
+  .tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;align-items:stretch;}
+  .tier{
+    background:var(--surface);border:1px solid var(--border);border-radius:4px;
+    padding:28px 26px;display:flex;flex-direction:column;gap:18px;position:relative;
+  }
+  .tier.featured{border-color:var(--accent);box-shadow:var(--shadow);}
+  .tier-badge{
+    position:absolute;top:-12px;right:22px;background:var(--accent);color:var(--surface-strong);
+    font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;
+    padding:4px 10px;border-radius:2px;font-weight:600;
+  }
+  .tier-name{font-family:"IBM Plex Mono",monospace;font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);}
+  .tier h3{font-size:23px;margin-top:2px;}
+  .tier-price{display:flex;align-items:baseline;gap:8px;margin-top:2px;}
+  .tier-price .amount{font-family:"Fraunces",serif;font-weight:700;font-size:30px;color:var(--text);}
+  .tier-price .unit{font-size:13.5px;color:var(--text-muted);}
+  .tier hr{border:none;border-top:1px solid var(--border);margin:2px 0;}
+  .tier ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:11px;flex:1;}
+  .tier li{display:flex;gap:10px;font-size:14.5px;color:var(--text);}
+  .tier li svg{flex-shrink:0;margin-top:3px;width:14px;height:14px;}
+  .tier .btn{justify-content:center;margin-top:6px;}
+
+  /* ---------- RECAP CARD ---------- */
+  .recap-layout{display:grid;grid-template-columns:.9fr 1.1fr;gap:40px;align-items:start;}
+  .recap-copy p{color:var(--text-muted);font-size:15.5px;margin-top:16px;}
+  .recap-copy p + p{margin-top:12px;}
+  .recap-links{display:flex;gap:12px;margin-top:26px;flex-wrap:wrap;}
+  .recap-card{
+    background:var(--surface-strong);color:var(--text-on-strong);
+    border-radius:6px;padding:26px 26px 22px;box-shadow:var(--shadow);
+  }
+  .recap-tag{
+    display:inline-flex;align-items:center;gap:10px;font-family:"IBM Plex Mono",monospace;
+    font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);
+    border:1px solid var(--border-strong);padding:4px 10px;border-radius:2px;
+  }
+  #liveDot{color:var(--gain);display:inline-flex;align-items:center;gap:5px;}
+  #liveDot::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--gain);animation:pulse 1.6s ease-in-out infinite;}
+  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.35;}}
+  @media (prefers-reduced-motion: reduce){ #liveDot::before{animation:none;} }
+  .recap-date{font-family:"Fraunces",serif;font-weight:700;font-size:21px;margin-top:14px;}
+  .idx-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px;}
+  .idx{background:rgba(241,234,217,.06);border:1px solid var(--border-strong);border-radius:4px;padding:12px 14px;}
+  .idx .lbl{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--text-on-strong);opacity:.6;font-family:"IBM Plex Mono",monospace;}
+  .idx .val{font-family:"IBM Plex Mono",monospace;font-size:17px;margin-top:4px;font-variant-numeric:tabular-nums;}
+  .stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px;}
+  .stat-row div{text-align:center;background:rgba(241,234,217,.05);border-radius:4px;padding:10px 4px;}
+  .stat-row .n{font-family:"IBM Plex Mono",monospace;font-size:18px;font-weight:600;font-variant-numeric:tabular-nums;}
+  .stat-row .l{font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;opacity:.65;margin-top:2px;}
+  .vol-row{margin-top:12px;font-size:12.5px;opacity:.75;font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;}
+  .lists{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:20px;}
+  .lists h4{font-family:"IBM Plex Mono",monospace;font-size:11px;text-transform:uppercase;letter-spacing:.06em;opacity:.7;margin-bottom:10px;}
+  .mv-row{display:grid;grid-template-columns:52px 1fr 52px;align-items:center;gap:8px;margin-bottom:7px;}
+  .mv-row .tk{font-family:"IBM Plex Mono",monospace;font-size:12.5px;font-weight:600;}
+  .mv-bar{height:6px;border-radius:3px;background:rgba(241,234,217,.12);position:relative;overflow:hidden;}
+  .mv-bar i{position:absolute;left:0;top:0;bottom:0;border-radius:3px;display:block;}
+  .mv-row .pc{font-family:"IBM Plex Mono",monospace;font-size:12px;text-align:right;font-variant-numeric:tabular-nums;}
+
+  /* ---------- ABOUT ---------- */
+  .about-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:52px;align-items:start;}
+  .about-grid p{color:var(--text-muted);font-size:16px;margin-top:16px;max-width:56ch;}
+  .about-grid p + p{margin-top:14px;}
+  .pillars{display:flex;flex-direction:column;gap:0;margin-top:26px;}
+  .pillar{display:flex;gap:16px;padding-block:16px;border-top:1px solid var(--border);}
+  .pillar:first-child{border-top:none;}
+  .pillar .ix{font-family:"IBM Plex Mono",monospace;color:var(--accent-strong);font-size:13px;padding-top:2px;}
+  .pillar h4{font-family:"Fraunces",serif;font-size:17px;font-weight:700;}
+  .pillar p{margin-top:4px;font-size:14px;}
+  .quote-block{
+    background:var(--surface-strong);color:var(--text-on-strong);border-radius:6px;
+    padding:32px 30px;position:relative;
+  }
+  .quote-block p{
+    font-family:"Fraunces",serif;font-size:20px;font-weight:600;line-height:1.4;color:var(--text-on-strong);
+    font-style:italic;
+  }
+  .quote-block p b{color:var(--accent);font-style:normal;}
+  .quote-block cite{
+    display:block;margin-top:16px;font-style:normal;font-size:12.5px;
+    font-family:"IBM Plex Mono",monospace;letter-spacing:.04em;color:var(--text-on-strong);opacity:.65;
+  }
+
+  /* ---------- CONTACT ---------- */
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;}
+  .contact-card{
+    background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:26px;
+    display:flex;flex-direction:column;gap:14px;
+  }
+  .contact-card .ic{
+    width:38px;height:38px;border-radius:50%;background:var(--bg-alt);
+    display:flex;align-items:center;justify-content:center;color:var(--accent-strong);
+  }
+  .contact-card h4{font-family:"Fraunces",serif;font-size:18px;}
+  .contact-card p{font-size:14.5px;color:var(--text-muted);}
+  .social-row{display:flex;gap:12px;margin-top:6px;}
+  .social-row a{
+    width:40px;height:40px;border-radius:50%;border:1px solid var(--border);
+    display:flex;align-items:center;justify-content:center;color:var(--text);text-decoration:none;
+    transition:border-color .2s ease, color .2s ease;
+  }
+  .social-row a:hover{border-color:var(--accent-strong);color:var(--accent-strong);}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--surface-strong);color:var(--text-on-strong);padding-block:40px;}
+  .foot-grid{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;}
+  .foot-left{display:flex;align-items:center;gap:10px;}
+  .foot-left svg{width:26px;height:26px;}
+  .foot-left span{font-family:"Fraunces",serif;font-weight:700;font-size:15px;}
+  .foot-mid{font-size:13px;opacity:.65;}
+  .foot-right{display:flex;gap:16px;}
+  .foot-right a{color:var(--text-on-strong);opacity:.75;text-decoration:none;}
+  .foot-right a:hover{opacity:1;color:var(--accent);}
+
+  @media (max-width: 880px){
+    .hero .wrap{grid-template-columns:1fr;}
+    .hero-art{order:-1;}
+    .hero-art svg{max-width:220px;}
+    nav.links{display:none;}
+    .tiers{grid-template-columns:1fr;}
+    .recap-layout,.about-grid,.contact-grid{grid-template-columns:1fr;}
+    .idx-row{grid-template-columns:1fr 1fr;}
+    .lists{grid-template-columns:1fr;}
+    section{padding-block:52px;}
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap nav">
+    <a class="brand" href="#accueil" aria-label="C&amp;M Invest — accueil">
+      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+        <circle cx="100" cy="100" r="96" fill="#0A3A2D"/>
+        <circle cx="100" cy="100" r="96" fill="none" stroke="#C9A227" stroke-width="2.5"/>
+        <rect x="48" y="120" width="16" height="38" rx="3" fill="#C9A227"/>
+        <rect x="70" y="102" width="16" height="56" rx="3" fill="#C9A227"/>
+        <rect x="92" y="84" width="16" height="74" rx="3" fill="#C9A227"/>
+        <rect x="114" y="62" width="16" height="96" rx="3" fill="#DCC067"/>
+        <polyline points="42,150 56,120 78,102 100,84 122,62 141,47" fill="none" stroke="#F4EFE2" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M 141,47 L 127,49 L 136,61 Z" fill="#F4EFE2"/>
+      </svg>
+      <span class="brand-word"><b>C&amp;M</b> Invest</span>
+    </a>
+    <nav class="links">
+      <a href="#accueil">Accueil</a>
+      <a href="#formations">Formations</a>
+      <a href="#recaps">Récaps BRVM</a>
+      <a href="#apropos">À propos</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-gold" href="https://wa.me/2290152483233?text=Bonjour%2C%20je%20souhaite%20rejoindre%20le%20groupe%20WhatsApp%20de%20C%26M%20Invest%20pour%20suivre%20les%20prochains%20webinaires." target="_blank" rel="noopener">Rejoindre le WhatsApp</a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <section class="hero" id="accueil" style="padding-top:0;">
+    <div class="wrap">
+      <div>
+        <span class="eyebrow">[ Cabinet d'investissement · BRVM · Zone UEMOA ]</span>
+        <h1 style="margin-top:16px;">Investir à la Bourse,<br>ça <mark>s'apprend</mark>.</h1>
+        <p class="hero-sub">C&amp;M Invest vous accompagne pas à pas pour comprendre les marchés, choisir les bonnes valeurs et investir sereinement à la BRVM — par la formation, l'accompagnement personnalisé et le suivi régulier du marché.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-gold" href="https://wa.me/2290152483233?text=Bonjour%2C%20je%20souhaite%20rejoindre%20le%20groupe%20WhatsApp%20de%20C%26M%20Invest%20pour%20suivre%20les%20prochains%20webinaires." target="_blank" rel="noopener">Rejoindre le groupe WhatsApp</a>
+          <a class="btn btn-ghost" href="#formations">Voir les formations</a>
+        </div>
+        <div class="hero-meta">
+          <div><strong>3</strong>formules, du webinaire gratuit à l'accompagnement complet</div>
+          <div><strong>BRVM</strong>marché suivi séance par séance</div>
+          <div><strong>UEMOA</strong>zone d'intervention</div>
+        </div>
+      </div>
+      <div class="hero-art">
+        <svg viewBox="0 0 320 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Graphique boursier ascendant">
+          <line x1="20" y1="230" x2="300" y2="230" stroke="#F1EAD9" stroke-opacity=".25" stroke-width="1"/>
+          <line x1="20" y1="170" x2="300" y2="170" stroke="#F1EAD9" stroke-opacity=".12" stroke-width="1"/>
+          <line x1="20" y1="110" x2="300" y2="110" stroke="#F1EAD9" stroke-opacity=".12" stroke-width="1"/>
+          <line x1="20" y1="50" x2="300" y2="50" stroke="#F1EAD9" stroke-opacity=".12" stroke-width="1"/>
+          <rect x="46" y="150" width="26" height="80" rx="3" fill="#C9A227"/>
+          <rect x="94" y="118" width="26" height="112" rx="3" fill="#C9A227"/>
+          <rect x="142" y="92" width="26" height="138" rx="3" fill="#C9A227"/>
+          <rect x="190" y="58" width="26" height="172" rx="3" fill="#DCC067"/>
+          <rect x="238" y="32" width="26" height="198" rx="3" fill="#DCC067"/>
+          <polyline points="40,196 107,150 155,120 203,86 251,42" fill="none" stroke="#F4EFE2" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M251,42 L233,45 L245,60 Z" fill="#F4EFE2"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <div class="ticker-band">
+    <div class="ticker-label" id="tickerLabel">Exemple — séance du jeudi 10 septembre 2026</div>
+    <div class="ticker-track" id="tickerTrack" aria-hidden="true">
+      <span>BRVM COMPOSITE <b class="up">552,75 (+0,18 %)</b></span>
+      <span>BRVM 30 <b class="up">267,73 (+0,31 %)</b></span>
+      <span>NEIC <b class="up">+7,41 %</b></span>
+      <span>SAFC <b class="up">+5,98 %</b></span>
+      <span>ECOC <b class="down">−5,06 %</b></span>
+      <span>BICC <b class="down">−4,12 %</b></span>
+      <span>BOAM <b class="up">+2,71 %</b></span>
+      <span>CIEC <b class="down">−4,05 %</b></span>
+      <span>BRVM COMPOSITE <b class="up">552,75 (+0,18 %)</b></span>
+      <span>BRVM 30 <b class="up">267,73 (+0,31 %)</b></span>
+      <span>NEIC <b class="up">+7,41 %</b></span>
+      <span>SAFC <b class="up">+5,98 %</b></span>
+      <span>ECOC <b class="down">−5,06 %</b></span>
+      <span>BICC <b class="down">−4,12 %</b></span>
+      <span>BOAM <b class="up">+2,71 %</b></span>
+      <span>CIEC <b class="down">−4,05 %</b></span>
+    </div>
+  </div>
+
+  <section id="formations">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">[ Parcours d'apprentissage ]</span>
+        <h2>Trois façons de progresser, à votre rythme.</h2>
+        <p>Du premier webinaire gratuit à l'accompagnement personnalisé, chaque formule prépare concrètement à investir à la BRVM.</p>
+      </div>
+
+      <div class="tiers">
+        <div class="tier">
+          <span class="tier-name">Formule 01</span>
+          <h3>Découverte</h3>
+          <div class="tier-price"><span class="amount">Gratuit</span><span class="unit">webinaire en ligne</span></div>
+          <hr>
+          <ul>
+            <li>✓ Présentation des opportunités actuelles à la BRVM</li>
+            <li>✓ Les grandes stratégies d'investissement</li>
+            <li>✓ Retour d'expérience d'un investisseur à la BRVM</li>
+            <li>✓ Session de questions-réponses en direct</li>
+          </ul>
+          <a class="btn btn-line" href="https://wa.me/2290152483233?text=Bonjour%2C%20je%20souhaite%20m%27inscrire%20au%20webinaire%20gratuit%20D%C3%A9couverte%20de%20C%26M%20Invest." target="_blank" rel="noopener">Rejoindre le WhatsApp</a>
+        </div>
+
+        <div class="tier featured">
+          <span class="tier-badge">Le plus suivi</span>
+          <span class="tier-name">Formule 02</span>
+          <h3>Investisseur Particulier</h3>
+          <div class="tier-price"><span class="amount num">25 000 FCFA</span><span class="unit">≈ 40 €</span></div>
+          <hr>
+          <ul>
+            <li>✓ 1 session de formation complète pour investir à la BRVM</li>
+            <li>✓ 2 sessions d'études de cas réels</li>
+            <li>✓ 1 mois d'accompagnement offert pour vos premiers pas</li>
+            <li>✓ Aide à l'ouverture de votre compte titre</li>
+          </ul>
+          <a class="btn btn-gold" href="https://wa.me/2290152483233?text=Bonjour%2C%20je%20souhaite%20m%27inscrire%20%C3%A0%20la%20formation%20Investisseur%20Particulier%20de%20C%26M%20Invest." target="_blank" rel="noopener">S'inscrire par WhatsApp</a>
+        </div>
+
+        <div class="tier">
+          <span class="tier-name">Formule 03</span>
+          <h3>Avancé</h3>
+          <div class="tier-price"><span class="amount num">50 000 FCFA</span><span class="unit">≈ 80 €</span></div>
+          <hr>
+          <ul>
+            <li>✓ Tout le contenu de la formule Investisseur Particulier</li>
+            <li>✓ 3 mois d'accompagnement au lieu d'un</li>
+            <li>✓ Séances personnelles pour répondre à vos questions</li>
+            <li>✓ Suivi rapproché de votre portefeuille</li>
+          </ul>
+          <a class="btn btn-line" href="https://wa.me/2290152483233?text=Bonjour%2C%20je%20souhaite%20m%27inscrire%20%C3%A0%20la%20formule%20Avanc%C3%A9%20de%20C%26M%20Invest." target="_blank" rel="noopener">S'inscrire par WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="recaps" class="alt">
+    <div class="wrap recap-layout">
+      <div class="recap-copy">
+        <span class="eyebrow">[ Suivi du marché ]</span>
+        <h2 style="margin-top:10px;">Le marché, résumé chaque séance.</h2>
+        <p>Chaque jour de cotation, C&amp;M Invest publie un résumé de la séance BRVM : indices, volumes échangés, et les valeurs qui ont le plus bougé — pour suivre le marché sans avoir à dépouiller les chiffres bruts.</p>
+        <p>Le résumé complet est publié sur Instagram et relayé dans le groupe WhatsApp. Un récapitulatif hebdomadaire complète le suivi chaque fin de semaine.</p>
+        <div class="recap-links">
+          <a class="btn btn-line" href="https://www.instagram.com/cabinet_cminvest/" target="_blank" rel="noopener">Suivre sur Instagram</a>
+          <a class="btn btn-line" href="https://wa.me/2290152483233?text=Bonjour%2C%20je%20souhaite%20rejoindre%20le%20groupe%20WhatsApp%20de%20C%26M%20Invest%20pour%20suivre%20les%20prochains%20webinaires." target="_blank" rel="noopener">Recevoir les récaps</a>
+        </div>
+      </div>
+
+      <div class="recap-card">
+        <span class="recap-tag" id="recapTag">Résumé de séance · BRVM <span id="liveDot" hidden>En direct</span></span>
+        <div class="recap-date" id="recapDate">Jeudi 10 septembre 2026</div>
+
+        <div class="idx-row">
+          <div class="idx"><div class="lbl">BRVM Composite</div><div class="val up" id="idxComposite">552,75 pts (+0,18 %)</div></div>
+          <div class="idx"><div class="lbl">BRVM 30</div><div class="val up" id="idxBrvm30">267,73 pts (+0,31 %)</div></div>
+        </div>
+
+        <div class="stat-row">
+          <div><div class="n up" id="statHausses">23</div><div class="l">En hausse</div></div>
+          <div><div class="n down" id="statBaisses">15</div><div class="l">En baisse</div></div>
+          <div><div class="n" id="statInchangees">32</div><div class="l">Inchangées</div></div>
+        </div>
+        <div class="vol-row" id="volRow">Volume : 2 691 354 187 FCFA · 6 746 transactions</div>
+
+        <div class="lists">
+          <div>
+            <h4>Top 5 hausses</h4>
+            <div id="listHausses">
+              <div class="mv-row"><span class="tk">NEIC</span><span class="mv-bar"><i style="width:92%;background:var(--gain);"></i></span><span class="pc up">+7,41%</span></div>
+              <div class="mv-row"><span class="tk">SAFC</span><span class="mv-bar"><i style="width:75%;background:var(--gain);"></i></span><span class="pc up">+5,98%</span></div>
+              <div class="mv-row"><span class="tk">STAC</span><span class="mv-bar"><i style="width:40%;background:var(--gain);"></i></span><span class="pc up">+3,20%</span></div>
+              <div class="mv-row"><span class="tk">SMBC</span><span class="mv-bar"><i style="width:35%;background:var(--gain);"></i></span><span class="pc up">+2,81%</span></div>
+              <div class="mv-row"><span class="tk">BOAM</span><span class="mv-bar"><i style="width:34%;background:var(--gain);"></i></span><span class="pc up">+2,71%</span></div>
+            </div>
+          </div>
+          <div>
+            <h4>Top 5 baisses</h4>
+            <div id="listBaisses">
+              <div class="mv-row"><span class="tk">ECOC</span><span class="mv-bar"><i style="width:63%;background:var(--loss);"></i></span><span class="pc down">−5,06%</span></div>
+              <div class="mv-row"><span class="tk">BICC</span><span class="mv-bar"><i style="width:51%;background:var(--loss);"></i></span><span class="pc down">−4,12%</span></div>
+              <div class="mv-row"><span class="tk">CIEC</span><span class="mv-bar"><i style="width:50%;background:var(--loss);"></i></span><span class="pc down">−4,05%</span></div>
+              <div class="mv-row"><span class="tk">LNBB</span><span class="mv-bar"><i style="width:31%;background:var(--loss);"></i></span><span class="pc down">−2,47%</span></div>
+              <div class="mv-row"><span class="tk">SDCC</span><span class="mv-bar"><i style="width:25%;background:var(--loss);"></i></span><span class="pc down">−2,00%</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="apropos">
+    <div class="wrap about-grid">
+      <div>
+        <span class="eyebrow">[ Le cabinet ]</span>
+        <h2 style="margin-top:10px;">Pourquoi C&amp;M Invest.</h2>
+        <p>C&amp;M Invest est un cabinet de formation et d'accompagnement en investissement, dédié aux épargnants de la zone UEMOA qui veulent comprendre la BRVM et y investir avec méthode plutôt qu'au hasard.</p>
+        <p>Notre approche part du terrain : des cas réels d'entreprises cotées, des chiffres vérifiés, et un accompagnement qui continue au-delà de la formation — jusqu'à l'ouverture du compte titre et les premiers ordres passés.</p>
+
+        <div class="pillars">
+          <div class="pillar">
+            <span class="ix">01</span>
+            <div><h4>Formation</h4><p>Des sessions claires pour comprendre les marchés et bâtir sa stratégie, du débutant à l'investisseur confirmé.</p></div>
+          </div>
+          <div class="pillar">
+            <span class="ix">02</span>
+            <div><h4>Accompagnement</h4><p>Un suivi personnalisé après la formation, adapté au profil et aux objectifs de chacun.</p></div>
+          </div>
+          <div class="pillar">
+            <span class="ix">03</span>
+            <div><h4>Analyse BRVM</h4><p>Des analyses et résumés de séance réguliers pour choisir les bonnes valeurs, au bon moment.</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="quote-block">
+        <p>« Le meilleur moment pour investir à la Bourse c'était <b>hier</b>, le second meilleur moment c'est <b>aujourd'hui</b>. »</p>
+        <cite>C&amp;M INVEST — Formation &amp; accompagnement en investissement, zone UEMOA</cite>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="alt">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">[ Contact ]</span>
+        <h2>Parlons de votre premier pas à la BRVM.</h2>
+        <p>Par WhatsApp, par téléphone ou sur les réseaux — choisissez ce qui vous convient.</p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-card">
+          <span class="ic">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.5 17.4c0 .4-.1.8-.3 1.2-.2.4-.5.7-.8 1-.6.5-1.3.8-2 .9-.7.1-1.5 0-2.5-.3-2-.6-4-1.9-5.7-3.6C7.5 15 6.2 13 5.6 11c-.3-1-.4-1.8-.3-2.5.1-.7.4-1.4.9-2 .3-.3.6-.6 1-.8.4-.2.8-.3 1.2-.3h.4c.4 0 .7.2.9.6l1.4 3c.2.3.2.7.1 1-.1.3-.3.6-.5.8l-.5.5c.7 1.5 1.8 2.6 3.3 3.3l.5-.5c.2-.2.5-.4.8-.5.3-.1.7-.1 1 .1l3 1.4c.4.2.6.5.6.9v.4Z"/></svg>
+          </span>
+          <h4>WhatsApp &amp; téléphone</h4>
+          <p class="num">+229 01 52 48 32 33</p>
+          <a class="btn btn-gold" style="align-self:flex-start" href="https://wa.me/2290152483233?text=Bonjour%20C%26M%20Invest%2C%20j%27ai%20une%20question%20sur%20vos%20formations." target="_blank" rel="noopener">Écrire sur WhatsApp</a>
+        </div>
+
+        <div class="contact-card">
+          <span class="ic">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z" opacity="0"/><path d="M22 6 12 13 2 6"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg>
+          </span>
+          <h4>Email</h4>
+          <p>contact@cminvest.org</p>
+          <a class="btn btn-line" style="align-self:flex-start" href="mailto:contact@cminvest.org">Envoyer un email</a>
+        </div>
+      </div>
+
+      <div style="margin-top:30px;">
+        <span class="eyebrow">Suivez le cabinet</span>
+        <div class="social-row">
+          <a href="https://www.facebook.com/profile.php?id=61594292881019" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-8.4h2.8l.4-3.3h-3.2V7.1c0-.9.3-1.6 1.7-1.6h1.6V2.5C16.6 2.3 15.6 2 14.4 2c-2.5 0-4.2 1.5-4.2 4.3v2.9H7.4v3.3h2.8V21h3.3Z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/cabinet_cminvest/" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg>
+          </a>
+          <a href="https://www.tiktok.com/@cabinet_cminvest" target="_blank" rel="noopener" aria-label="TikTok">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M16.6 3c.4 2 1.7 3.4 3.9 3.6v2.7c-1.4.1-2.7-.3-3.9-1.1v6.6c0 3.2-2.6 5.6-5.7 5.4-2.8-.2-5-2.5-5-5.3 0-3 2.6-5.4 5.6-5.3v2.8c-1.4-.2-2.7.9-2.8 2.3-.1 1.5 1 2.7 2.5 2.8 1.5.1 2.7-1 2.8-2.5V3h2.6Z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap foot-grid">
+    <div class="foot-left">
+      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+        <circle cx="100" cy="100" r="96" fill="#0A3A2D"/>
+        <circle cx="100" cy="100" r="96" fill="none" stroke="#C9A227" stroke-width="2.5"/>
+        <rect x="48" y="120" width="16" height="38" rx="3" fill="#C9A227"/>
+        <rect x="70" y="102" width="16" height="56" rx="3" fill="#C9A227"/>
+        <rect x="92" y="84" width="16" height="74" rx="3" fill="#C9A227"/>
+        <rect x="114" y="62" width="16" height="96" rx="3" fill="#DCC067"/>
+        <polyline points="42,150 56,120 78,102 100,84 122,62 141,47" fill="none" stroke="#F4EFE2" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M 141,47 L 127,49 L 136,61 Z" fill="#F4EFE2"/>
+      </svg>
+      <span>C&amp;M Invest</span>
+    </div>
+    <div class="foot-mid">Formation &amp; accompagnement en investissement — Zone UEMOA</div>
+    <div class="foot-right">
+      <a href="#formations">Formations</a>
+      <a href="#recaps">Récaps</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  function fmtPts(n){
+    return Number(n).toLocaleString('fr-FR', {minimumFractionDigits:2, maximumFractionDigits:2});
+  }
+  function fmtPctSigned(n){
+    var v = Number(n);
+    var s = Math.abs(v).toFixed(2).replace('.', ',');
+    return (v >= 0 ? '+' : '−') + s + ' %';
+  }
+  function fmtPctBare(n){
+    var v = Number(n);
+    var s = Math.abs(v).toFixed(2).replace('.', ',');
+    return (v >= 0 ? '+' : '−') + s + '%';
+  }
+  function fmtFCFA(n){
+    return Number(n).toLocaleString('fr-FR') + ' FCFA';
+  }
+
+  function buildMoversRows(list, kind){
+    var maxAbs = 0.0001;
+    (list || []).forEach(function(m){ maxAbs = Math.max(maxAbs, Math.abs(Number(m.pct))); });
+    var color = kind === 'up' ? 'var(--gain)' : 'var(--loss)';
+    var cls = kind === 'up' ? 'up' : 'down';
+    return (list || []).slice(0, 5).map(function(m){
+      var w = Math.max(6, Math.round((Math.abs(Number(m.pct)) / maxAbs) * 100));
+      return '<div class="mv-row"><span class="tk">' + m.code + '</span>' +
+        '<span class="mv-bar"><i style="width:' + w + '%;background:' + color + ';"></i></span>' +
+        '<span class="pc ' + cls + '">' + fmtPctBare(m.pct) + '</span></div>';
+    }).join('');
+  }
+
+  function renderRecap(d){
+    if(!d) return;
+    var compUp = Number(d.composite_change) >= 0;
+    var b30Up = Number(d.brvm30_change) >= 0;
+
+    var tickerLabel = document.getElementById('tickerLabel');
+    var recapDate = document.getElementById('recapDate');
+    var idxComposite = document.getElementById('idxComposite');
+    var idxBrvm30 = document.getElementById('idxBrvm30');
+    var statHausses = document.getElementById('statHausses');
+    var statBaisses = document.getElementById('statBaisses');
+    var statInchangees = document.getElementById('statInchangees');
+    var volRow = document.getElementById('volRow');
+    var listHausses = document.getElementById('listHausses');
+    var listBaisses = document.getElementById('listBaisses');
+    var liveDot = document.getElementById('liveDot');
+    var tickerTrack = document.getElementById('tickerTrack');
+
+    if(recapDate) recapDate.textContent = d.date_label || '';
+    if(tickerLabel) tickerLabel.textContent = 'Séance du ' + (d.date_label || '');
+    if(liveDot) liveDot.hidden = false;
+
+    if(idxComposite){
+      idxComposite.textContent = fmtPts(d.composite) + ' pts (' + fmtPctSigned(d.composite_change) + ')';
+      idxComposite.className = 'val ' + (compUp ? 'up' : 'down');
+    }
+    if(idxBrvm30){
+      idxBrvm30.textContent = fmtPts(d.brvm30) + ' pts (' + fmtPctSigned(d.brvm30_change) + ')';
+      idxBrvm30.className = 'val ' + (b30Up ? 'up' : 'down');
+    }
+    if(statHausses) statHausses.textContent = d.hausses;
+    if(statBaisses) statBaisses.textContent = d.baisses;
+    if(statInchangees) statInchangees.textContent = d.inchangees;
+    if(volRow){
+      var txt = 'Volume : ' + fmtFCFA(d.volume_fcfa);
+      if(d.transactions){ txt += ' · ' + Number(d.transactions).toLocaleString('fr-FR') + ' transactions'; }
+      volRow.textContent = txt;
+    }
+    if(listHausses) listHausses.innerHTML = buildMoversRows(d.top_hausses, 'up');
+    if(listBaisses) listBaisses.innerHTML = buildMoversRows(d.top_baisses, 'down');
+
+    if(tickerTrack){
+      var items = [];
+      items.push('<span>BRVM COMPOSITE <b class="' + (compUp?'up':'down') + '">' + fmtPts(d.composite) + ' (' + fmtPctSigned(d.composite_change) + ')</b></span>');
+      items.push('<span>BRVM 30 <b class="' + (b30Up?'up':'down') + '">' + fmtPts(d.brvm30) + ' (' + fmtPctSigned(d.brvm30_change) + ')</b></span>');
+      (d.top_hausses || []).slice(0,4).forEach(function(m){
+        items.push('<span>' + m.code + ' <b class="up">' + fmtPctBare(m.pct) + '</b></span>');
+      });
+      (d.top_baisses || []).slice(0,4).forEach(function(m){
+        items.push('<span>' + m.code + ' <b class="down">' + fmtPctBare(m.pct) + '</b></span>');
+      });
+      tickerTrack.innerHTML = items.join('') + items.join('');
+    }
+  }
+
+  async function tryCapabilityDb(){
+    if(!window.claude || typeof window.claude.use !== 'function') return false;
+    try{
+      var db = await window.claude.use('db');
+      if(!db) return false;
+      var ref = db.doc('recap/latest');
+      ref.onSnapshot(function(snap){
+        if(snap && snap.exists){
+          var data = snap.data();
+          if(data) renderRecap(data);
+        }
+      }, function(_err){
+        /* terminal subscription error — keep the last rendered state (or the static example) */
+      });
+      return true;
+    }catch(e){
+      return false;
+    }
+  }
+
+  async function tryStaticJson(){
+    try{
+      var res = await fetch('./recap.json', {cache: 'no-store'});
+      if(!res.ok) return;
+      var data = await res.json();
+      if(data) renderRecap(data);
+    }catch(e){
+      /* recap.json missing or unreadable — keep the static example already in the page */
+    }
+  }
+
+  async function initLiveRecap(){
+    var usedDb = await tryCapabilityDb();
+    if(!usedDb){
+      await tryStaticJson();
+    }
+  }
+
+  initLiveRecap();
+})();
+</script>
+</body>
+</html>
