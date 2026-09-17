@@ -164,7 +164,21 @@
   .hero-meta div{font-size:13px;color:var(--text-on-strong);opacity:.7;}
   .hero-meta strong{display:block;font-family:"Fraunces",serif;font-size:20px;color:var(--accent);opacity:1;font-weight:700;}
   .hero-art{display:flex;justify-content:center;}
-  .hero-art svg{width:100%;max-width:340px;height:auto;}
+  .hero-art img{
+    width:100%;max-width:400px;height:auto;border-radius:14px;
+    box-shadow:0 24px 50px -18px rgba(0,0,0,0.55);
+    animation:heroFloat 5s ease-in-out infinite;
+  }
+  @keyframes heroFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
+  @media (prefers-reduced-motion: reduce){ .hero-art img{animation:none;} }
+
+  /* ---------- REVEAL / MOTION ---------- */
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease, transform .7s ease;}
+  .reveal.in-view{opacity:1;transform:translateY(0);}
+  .reveal-d1{transition-delay:.08s;}
+  .reveal-d2{transition-delay:.18s;}
+  .reveal-d3{transition-delay:.28s;}
+  @media (prefers-reduced-motion: reduce){ .reveal{opacity:1!important;transform:none!important;transition:none!important;} }
 
   /* ---------- TICKER ---------- */
   .ticker-band{
@@ -200,7 +214,9 @@
   .tier{
     background:var(--surface);border:1px solid var(--border);border-radius:4px;
     padding:28px 26px;display:flex;flex-direction:column;gap:18px;position:relative;
+    transition:transform .25s ease, box-shadow .25s ease;
   }
+  .tier:hover{transform:translateY(-6px);box-shadow:var(--shadow);}
   .tier.featured{border-color:var(--accent);box-shadow:var(--shadow);}
   .tier-badge{
     position:absolute;top:-12px;right:22px;background:var(--accent);color:var(--surface-strong);
@@ -217,6 +233,49 @@
   .tier li{display:flex;gap:10px;font-size:14.5px;color:var(--text);}
   .tier li svg{flex-shrink:0;margin-top:3px;width:14px;height:14px;}
   .tier .btn{justify-content:center;margin-top:6px;}
+
+  /* ---------- SIMULATEUR ---------- */
+  .sim-card{
+    background:var(--surface);border:1px solid var(--border);border-radius:8px;
+    padding:32px;display:grid;grid-template-columns:1fr 1fr;gap:40px;box-shadow:var(--shadow);
+  }
+  .sim-controls{display:flex;flex-direction:column;gap:22px;}
+  .sim-field{display:flex;flex-direction:column;gap:8px;font-size:14px;color:var(--text-muted);}
+  .sim-field>span{font-weight:600;color:var(--text);}
+  .sim-field input[type=range]{
+    -webkit-appearance:none;appearance:none;width:100%;height:5px;border-radius:3px;
+    background:var(--border);outline:none;cursor:pointer;margin:2px 0;
+  }
+  .sim-field input[type=range]::-webkit-slider-thumb{
+    -webkit-appearance:none;appearance:none;width:18px;height:18px;border-radius:50%;
+    background:var(--accent);cursor:pointer;border:2px solid var(--surface);
+    box-shadow:0 0 0 1px var(--accent-strong);transition:transform .15s ease;
+  }
+  .sim-field input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.15);}
+  .sim-field input[type=range]::-moz-range-thumb{
+    width:18px;height:18px;border-radius:50%;background:var(--accent);cursor:pointer;border:2px solid var(--surface);
+  }
+  .sim-field output{font-family:"IBM Plex Mono",monospace;font-size:13px;color:var(--accent-strong);font-weight:600;}
+  .sim-profiles{display:flex;flex-direction:column;gap:10px;font-size:14px;color:var(--text-muted);}
+  .sim-profiles>span{font-weight:600;color:var(--text);}
+  .sim-profile-btns{display:flex;gap:8px;flex-wrap:wrap;}
+  .sim-profile-btn{
+    font-family:"IBM Plex Sans",sans-serif;font-size:12.5px;font-weight:600;
+    padding:8px 12px;border-radius:20px;border:1.5px solid var(--border);background:transparent;color:var(--text);
+    cursor:pointer;transition:all .2s ease;
+  }
+  .sim-profile-btn:hover{border-color:var(--accent-strong);}
+  .sim-profile-btn.is-active{background:var(--accent);border-color:var(--accent);color:var(--surface-strong);}
+  .sim-result{display:flex;flex-direction:column;gap:20px;justify-content:center;}
+  .sim-result-main .lbl{font-size:13px;color:var(--text-muted);}
+  .sim-total{font-family:"Fraunces",serif;font-weight:700;font-size:clamp(28px,3vw,38px);color:var(--accent-strong);margin-top:4px;}
+  .sim-bars{display:flex;flex-direction:column;gap:12px;}
+  .sim-bar-row{display:grid;grid-template-columns:104px 1fr 104px;align-items:center;gap:10px;font-size:12.5px;color:var(--text-muted);}
+  .sim-bar{height:8px;border-radius:4px;background:var(--bg-alt);overflow:hidden;position:relative;}
+  .sim-bar i{position:absolute;left:0;top:0;bottom:0;background:var(--text-muted);border-radius:4px;transition:width .5s ease;display:block;}
+  .sim-bar-gain i{background:var(--gain);}
+  .sim-bar-row .num{text-align:right;color:var(--text);font-weight:600;}
+  .sim-disclaimer{font-size:12px;color:var(--text-muted);line-height:1.5;}
 
   /* ---------- RECAP CARD ---------- */
   .recap-layout{display:grid;grid-template-columns:.9fr 1.1fr;gap:40px;align-items:start;}
@@ -283,7 +342,9 @@
   .contact-card{
     background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:26px;
     display:flex;flex-direction:column;gap:14px;
+    transition:transform .25s ease, box-shadow .25s ease;
   }
+  .contact-card:hover{transform:translateY(-4px);box-shadow:var(--shadow);}
   .contact-card .ic{
     width:38px;height:38px;border-radius:50%;background:var(--bg-alt);
     display:flex;align-items:center;justify-content:center;color:var(--accent-strong);
@@ -312,15 +373,17 @@
   @media (max-width: 880px){
     .hero .wrap{grid-template-columns:1fr;}
     .hero-art{order:-1;}
-    .hero-art svg{max-width:220px;}
+    .hero-art img{max-width:260px;}
     nav.links{display:none;}
     .tiers{grid-template-columns:1fr;}
+    .sim-card{grid-template-columns:1fr;}
     .recap-layout,.about-grid,.contact-grid{grid-template-columns:1fr;}
     .idx-row{grid-template-columns:1fr 1fr;}
     .lists{grid-template-columns:1fr;}
     section{padding-block:52px;}
   }
 </style>
+<noscript><style>.reveal{opacity:1!important;transform:none!important;}</style></noscript>
 </head>
 <body>
 
@@ -364,6 +427,7 @@
         <div class="hero-ctas">
           <a class="btn btn-gold" href="https://wa.me/2290152483233?text=Bonjour%2C%20je%20souhaite%20rejoindre%20le%20groupe%20WhatsApp%20de%20C%26M%20Invest%20pour%20suivre%20les%20prochains%20webinaires." target="_blank" rel="noopener">Rejoindre le groupe WhatsApp</a>
           <a class="btn btn-ghost" href="#formations">Voir les formations</a>
+          <a class="btn btn-ghost" href="#simulateur">Simuler mon investissement</a>
         </div>
         <div class="hero-meta">
           <div><strong>3</strong>formules, du webinaire gratuit à l'accompagnement complet</div>
@@ -372,30 +436,7 @@
         </div>
       </div>
       <div class="hero-art">
-        <svg viewBox="0 0 320 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Graphique boursier ascendant">
-          <defs>
-            <linearGradient id="heroLineStroke" x1="0" y1="1" x2="1" y2="0">
-              <stop offset="0%" stop-color="#C9A227"/>
-              <stop offset="100%" stop-color="#F4EFE2"/>
-            </linearGradient>
-            <filter id="heroBlur" x="-50%" y="-50%" width="200%" height="200%">
-              <feGaussianBlur stdDeviation="6"/>
-            </filter>
-          </defs>
-          <line x1="20" y1="230" x2="300" y2="230" stroke="#F1EAD9" stroke-opacity=".25" stroke-width="1"/>
-          <line x1="20" y1="170" x2="300" y2="170" stroke="#F1EAD9" stroke-opacity=".12" stroke-width="1"/>
-          <line x1="20" y1="110" x2="300" y2="110" stroke="#F1EAD9" stroke-opacity=".12" stroke-width="1"/>
-          <line x1="20" y1="50" x2="300" y2="50" stroke="#F1EAD9" stroke-opacity=".12" stroke-width="1"/>
-          <path d="M40,196 C70,180 90,160 107,150 C130,136 140,128 155,120 C178,108 190,96 203,86 C222,72 238,55 251,42" fill="none" stroke="#DCC067" stroke-width="10" stroke-linecap="round" opacity="0.35" filter="url(#heroBlur)"/>
-          <path d="M40,196 C70,180 90,160 107,150 C130,136 140,128 155,120 C178,108 190,96 203,86 C222,72 238,55 251,42" fill="none" stroke="url(#heroLineStroke)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-          <circle cx="40" cy="196" r="4" fill="#F4EFE2"/>
-          <circle cx="107" cy="150" r="4" fill="#F4EFE2"/>
-          <circle cx="155" cy="120" r="4" fill="#F4EFE2"/>
-          <circle cx="203" cy="86" r="4" fill="#F4EFE2"/>
-          <circle cx="251" cy="42" r="11" fill="none" stroke="#DCC067" stroke-width="2" opacity="0.55"/>
-          <circle cx="251" cy="42" r="6.5" fill="#C9A227" stroke="#F4EFE2" stroke-width="2"/>
-          <path d="M251,42 C262,34 272,28 283,21" fill="none" stroke="#F4EFE2" stroke-width="2" stroke-dasharray="1 7" stroke-linecap="round" opacity="0.6"/>
-        </svg>
+        <img src="hero-brvm.jpg" alt="Célébration BRVM — Bourse Régionale des Valeurs Mobilières, écrans de cotation en arrière-plan" width="680" height="404" loading="eager">
       </div>
     </div>
   </section>
@@ -424,14 +465,14 @@
 
   <section id="formations">
     <div class="wrap">
-      <div class="section-head">
+      <div class="section-head reveal">
         <span class="eyebrow">[ Parcours d'apprentissage ]</span>
         <h2>Trois façons de progresser, à votre rythme.</h2>
         <p>Du premier webinaire gratuit à l'accompagnement personnalisé, chaque formule prépare concrètement à investir à la BRVM.</p>
       </div>
 
       <div class="tiers">
-        <div class="tier">
+        <div class="tier reveal reveal-d1">
           <span class="tier-name">Formule 01</span>
           <h3>Découverte</h3>
           <div class="tier-price"><span class="amount">Gratuit</span><span class="unit">webinaire en ligne</span></div>
@@ -445,7 +486,7 @@
           <a class="btn btn-line" href="https://wa.me/2290152483233?text=Bonjour%2C%20je%20souhaite%20m%27inscrire%20au%20webinaire%20gratuit%20D%C3%A9couverte%20de%20C%26M%20Invest." target="_blank" rel="noopener">Rejoindre le WhatsApp</a>
         </div>
 
-        <div class="tier featured">
+        <div class="tier featured reveal reveal-d2">
           <span class="tier-badge">Le plus suivi</span>
           <span class="tier-name">Formule 02</span>
           <h3>Investisseur Particulier</h3>
@@ -460,7 +501,7 @@
           <a class="btn btn-gold" href="https://wa.me/2290152483233?text=Bonjour%2C%20je%20souhaite%20m%27inscrire%20%C3%A0%20la%20formation%20Investisseur%20Particulier%20de%20C%26M%20Invest." target="_blank" rel="noopener">S'inscrire par WhatsApp</a>
         </div>
 
-        <div class="tier">
+        <div class="tier reveal reveal-d3">
           <span class="tier-name">Formule 03</span>
           <h3>Avancé</h3>
           <div class="tier-price"><span class="amount num">50 000 FCFA</span><span class="unit">≈ 80 €</span></div>
@@ -477,9 +518,68 @@
     </div>
   </section>
 
+  <section id="simulateur">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">[ Simulateur ]</span>
+        <h2>Visualisez la puissance des intérêts composés.</h2>
+        <p>Simulez la croissance d'un capital investi à la BRVM sur plusieurs années. Un outil pédagogique pour comprendre l'effet du temps et de la régularité — pas une prévision ni un conseil personnalisé.</p>
+      </div>
+
+      <div class="sim-card reveal">
+        <div class="sim-controls">
+          <label class="sim-field">
+            <span>Capital de départ</span>
+            <input type="range" id="simInitial" min="0" max="2000000" step="25000" value="200000">
+            <output class="num" id="simInitialOut">200 000 FCFA</output>
+          </label>
+          <label class="sim-field">
+            <span>Versement mensuel</span>
+            <input type="range" id="simMonthly" min="0" max="200000" step="5000" value="25000">
+            <output class="num" id="simMonthlyOut">25 000 FCFA</output>
+          </label>
+          <label class="sim-field">
+            <span>Durée</span>
+            <input type="range" id="simYears" min="1" max="20" step="1" value="5">
+            <output class="num" id="simYearsOut">5 ans</output>
+          </label>
+          <div class="sim-profiles">
+            <span>Profil de rendement estimé</span>
+            <div class="sim-profile-btns" role="group" aria-label="Profil de rendement">
+              <button type="button" class="sim-profile-btn" data-rate="0.05">Prudent · 5%/an</button>
+              <button type="button" class="sim-profile-btn is-active" data-rate="0.08">Modéré · 8%/an</button>
+              <button type="button" class="sim-profile-btn" data-rate="0.12">Dynamique · 12%/an</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="sim-result">
+          <div class="sim-result-main">
+            <span class="lbl">Valeur estimée après <span id="simYearsLabel">5</span> ans</span>
+            <div class="sim-total num" id="simTotal">0 FCFA</div>
+          </div>
+          <div class="sim-bars">
+            <div class="sim-bar-row">
+              <span>Total investi</span>
+              <div class="sim-bar"><i id="simBarInvested" style="width:0%"></i></div>
+              <span class="num" id="simInvestedOut">0 FCFA</span>
+            </div>
+            <div class="sim-bar-row">
+              <span>Gains estimés</span>
+              <div class="sim-bar sim-bar-gain"><i id="simBarGain" style="width:0%"></i></div>
+              <span class="num" id="simGainOut">0 FCFA</span>
+            </div>
+          </div>
+          <p class="sim-disclaimer">Simulation à titre illustratif basée sur un taux constant, hors frais et fiscalité. Elle ne constitue ni une prévision ni un conseil en investissement personnalisé ; les marchés comportent un risque de perte en capital.</p>
+          <a class="btn btn-gold" href="https://wa.me/2290152483233?text=Bonjour%2C%20je%20souhaite%20%C3%A9changer%20sur%20ma%20strat%C3%A9gie%20d%27investissement%20avec%20C%26M%20Invest." target="_blank" rel="noopener">Parler de ma stratégie</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section id="recaps" class="alt">
     <div class="wrap recap-layout">
-      <div class="recap-copy">
+      <div class="recap-copy reveal">
         <span class="eyebrow">[ Suivi du marché ]</span>
         <h2 style="margin-top:10px;">Le marché, résumé chaque séance.</h2>
         <p>Chaque jour de cotation, C&amp;M Invest publie un résumé de la séance BRVM : indices, volumes échangés, et les valeurs qui ont le plus bougé — pour suivre le marché sans avoir à dépouiller les chiffres bruts.</p>
@@ -489,7 +589,7 @@
         </div>
       </div>
 
-      <div class="recap-card">
+      <div class="recap-card reveal">
         <span class="recap-tag" id="recapTag">Résumé de séance · BRVM <span id="liveDot" hidden>En direct</span></span>
         <div class="recap-date" id="recapDate">Jeudi 10 septembre 2026</div>
 
@@ -533,7 +633,7 @@
 
   <section id="apropos">
     <div class="wrap about-grid">
-      <div>
+      <div class="reveal">
         <span class="eyebrow">[ Le cabinet ]</span>
         <h2 style="margin-top:10px;">Pourquoi C&amp;M Invest.</h2>
         <p>C&amp;M Invest est un cabinet de formation et d'accompagnement en investissement, dédié aux épargnants de la zone UEMOA qui veulent comprendre la BRVM et y investir avec méthode plutôt qu'au hasard.</p>
@@ -555,7 +655,7 @@
         </div>
       </div>
 
-      <div class="quote-block">
+      <div class="quote-block reveal reveal-d2">
         <p>« Le meilleur moment pour investir à la Bourse c'était <b>hier</b>, le second meilleur moment c'est <b>aujourd'hui</b>. »</p>
         <cite>C&amp;M INVEST — Formation &amp; accompagnement en investissement, zone UEMOA</cite>
       </div>
@@ -564,14 +664,14 @@
 
   <section id="contact" class="alt">
     <div class="wrap">
-      <div class="section-head">
+      <div class="section-head reveal">
         <span class="eyebrow">[ Contact ]</span>
         <h2>Parlons de votre premier pas à la BRVM.</h2>
         <p>Par WhatsApp, par téléphone ou sur les réseaux — choisissez ce qui vous convient.</p>
       </div>
 
       <div class="contact-grid">
-        <div class="contact-card">
+        <div class="contact-card reveal reveal-d1">
           <span class="ic">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.5 17.4c0 .4-.1.8-.3 1.2-.2.4-.5.7-.8 1-.6.5-1.3.8-2 .9-.7.1-1.5 0-2.5-.3-2-.6-4-1.9-5.7-3.6C7.5 15 6.2 13 5.6 11c-.3-1-.4-1.8-.3-2.5.1-.7.4-1.4.9-2 .3-.3.6-.6 1-.8.4-.2.8-.3 1.2-.3h.4c.4 0 .7.2.9.6l1.4 3c.2.3.2.7.1 1-.1.3-.3.6-.5.8l-.5.5c.7 1.5 1.8 2.6 3.3 3.3l.5-.5c.2-.2.5-.4.8-.5.3-.1.7-.1 1 .1l3 1.4c.4.2.6.5.6.9v.4Z"/></svg>
           </span>
@@ -580,7 +680,7 @@
           <a class="btn btn-gold" style="align-self:flex-start" href="https://wa.me/2290152483233?text=Bonjour%20C%26M%20Invest%2C%20j%27ai%20une%20question%20sur%20vos%20formations." target="_blank" rel="noopener">Écrire sur WhatsApp</a>
         </div>
 
-        <div class="contact-card">
+        <div class="contact-card reveal reveal-d2">
           <span class="ic">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z" opacity="0"/><path d="M22 6 12 13 2 6"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg>
           </span>
@@ -760,6 +860,129 @@
     }
   }
 
+  var reduceMotion = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+
+  function setupReveal(){
+    var els = document.querySelectorAll('.reveal');
+    if(reduceMotion || !('IntersectionObserver' in window) || els.length === 0){
+      els.forEach(function(el){ el.classList.add('in-view'); });
+      return;
+    }
+    var obs = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.add('in-view');
+          obs.unobserve(entry.target);
+        }
+      });
+    }, {threshold:0.15, rootMargin:'0px 0px -40px 0px'});
+    els.forEach(function(el){ obs.observe(el); });
+  }
+
+  function setupCountUp(){
+    var card = document.querySelector('.recap-card');
+    if(!card) return;
+    var targets = [
+      document.getElementById('statHausses'),
+      document.getElementById('statBaisses'),
+      document.getElementById('statInchangees')
+    ].filter(Boolean);
+    if(targets.length === 0) return;
+
+    function run(){
+      targets.forEach(function(el){
+        var target = parseInt(el.textContent, 10);
+        if(isNaN(target)) return;
+        var duration = 900;
+        var startTime = null;
+        function step(ts){
+          if(!startTime) startTime = ts;
+          var progress = Math.min((ts - startTime) / duration, 1);
+          var eased = 1 - Math.pow(1 - progress, 3);
+          el.textContent = Math.round(target * eased);
+          if(progress < 1) requestAnimationFrame(step);
+          else el.textContent = target;
+        }
+        requestAnimationFrame(step);
+      });
+    }
+
+    if(reduceMotion || !('IntersectionObserver' in window)) return;
+    var obs = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          run();
+          obs.unobserve(entry.target);
+        }
+      });
+    }, {threshold:0.4});
+    obs.observe(card);
+  }
+
+  function setupSimulator(){
+    var initial = document.getElementById('simInitial');
+    var monthly = document.getElementById('simMonthly');
+    var years = document.getElementById('simYears');
+    var initialOut = document.getElementById('simInitialOut');
+    var monthlyOut = document.getElementById('simMonthlyOut');
+    var yearsOut = document.getElementById('simYearsOut');
+    var yearsLabel = document.getElementById('simYearsLabel');
+    var totalEl = document.getElementById('simTotal');
+    var investedOut = document.getElementById('simInvestedOut');
+    var gainOut = document.getElementById('simGainOut');
+    var barInvested = document.getElementById('simBarInvested');
+    var barGain = document.getElementById('simBarGain');
+    var profileBtns = document.querySelectorAll('.sim-profile-btn');
+    if(!initial || !monthly || !years) return;
+
+    var rate = 0.08;
+
+    function fcfa(n){ return Math.round(n).toLocaleString('fr-FR') + ' FCFA'; }
+
+    function compute(){
+      var P = Number(initial.value);
+      var M = Number(monthly.value);
+      var Y = Number(years.value);
+      var n = Y * 12;
+      var mr = rate / 12;
+      var futureInitial = P * Math.pow(1 + mr, n);
+      var futureMonthly = M > 0 ? M * ((Math.pow(1 + mr, n) - 1) / mr) : 0;
+      var total = futureInitial + futureMonthly;
+      var invested = P + M * n;
+      var gain = Math.max(0, total - invested);
+
+      initialOut.textContent = fcfa(P);
+      monthlyOut.textContent = fcfa(M);
+      yearsOut.textContent = Y + (Y > 1 ? ' ans' : ' an');
+      yearsLabel.textContent = Y;
+      totalEl.textContent = fcfa(total);
+      investedOut.textContent = fcfa(invested);
+      gainOut.textContent = fcfa(gain);
+
+      var investedPct = total > 0 ? Math.min(100, (invested / total) * 100) : 0;
+      var gainPct = total > 0 ? Math.min(100, (gain / total) * 100) : 0;
+      barInvested.style.width = investedPct + '%';
+      barGain.style.width = gainPct + '%';
+    }
+
+    [initial, monthly, years].forEach(function(el){
+      el.addEventListener('input', compute);
+    });
+    profileBtns.forEach(function(btn){
+      btn.addEventListener('click', function(){
+        profileBtns.forEach(function(b){ b.classList.remove('is-active'); });
+        btn.classList.add('is-active');
+        rate = Number(btn.dataset.rate);
+        compute();
+      });
+    });
+
+    compute();
+  }
+
+  try{ setupReveal(); }catch(e){}
+  try{ setupCountUp(); }catch(e){}
+  try{ setupSimulator(); }catch(e){}
   initLiveRecap();
 })();
 </script>
