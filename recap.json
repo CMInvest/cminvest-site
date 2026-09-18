@@ -1,68 +1,68 @@
 {
-  "date": "2026-09-16",
-  "date_label": "Mercredi 16 septembre 2026",
-  "composite": 549.56,
-  "composite_change": -0.61,
-  "brvm30": 266.39,
-  "brvm30_change": -0.54,
-  "hausses": 12,
-  "baisses": 27,
-  "inchangees": 8,
-  "volume_fcfa": 3543932492,
+  "date": "2026-09-17",
+  "date_label": "Jeudi 17 septembre 2026",
+  "composite": 548.07,
+  "composite_change": -0.27,
+  "brvm30": 265.31,
+  "brvm30_change": -0.41,
+  "hausses": 13,
+  "baisses": 29,
+  "inchangees": 2,
+  "volume_fcfa": 3342097823,
   "top_hausses": [
     {
-      "code": "LNBB",
-      "pct": 3.67,
-      "cloture": 4100
+      "code": "UNLC",
+      "pct": 7.5,
+      "cloture": 52700
     },
     {
-      "code": "SGBC",
-      "pct": 2.91,
-      "cloture": 38900
+      "code": "STBC",
+      "pct": 5.12,
+      "cloture": 21970
     },
     {
-      "code": "SDSC",
-      "pct": 2.83,
-      "cloture": 3085
+      "code": "ONTBF",
+      "pct": 2.12,
+      "cloture": 2890
     },
     {
-      "code": "CABC",
-      "pct": 2.64,
-      "cloture": 3500
+      "code": "SHEC",
+      "pct": 1.71,
+      "cloture": 2980
     },
     {
-      "code": "BICC",
-      "pct": 2.09,
-      "cloture": 31700
+      "code": "ORGT",
+      "pct": 1.38,
+      "cloture": 3295
     }
   ],
   "top_baisses": [
     {
-      "code": "UNLC",
-      "pct": -7.5,
-      "cloture": 49025
+      "code": "NEIC",
+      "pct": -7.1,
+      "cloture": 2550
     },
     {
-      "code": "BNBC",
-      "pct": -7.47,
-      "cloture": 2105
+      "code": "SMBC",
+      "pct": -3.9,
+      "cloture": 17000
     },
     {
-      "code": "STBC",
-      "pct": -4.57,
-      "cloture": 20900
+      "code": "TTLS",
+      "pct": -3.8,
+      "cloture": 3800
     },
     {
-      "code": "BOABF",
-      "pct": -4.06,
-      "cloture": 8150
+      "code": "SDSC",
+      "pct": -3.08,
+      "cloture": 2990
     },
     {
-      "code": "SDCC",
-      "pct": -3.49,
-      "cloture": 13400
+      "code": "SAFC",
+      "pct": -3.01,
+      "cloture": 4835
     }
   ],
-  "source": "brvm.org + brvmscreener.com, croisés le 17/09/2026 ; hausses/baisses/inchangées confirmés par l'utilisateur",
-  "updated_at": "2026-09-17T09:59:24Z"
+  "source": "Bulletin Officiel de la Cote BRVM n°176 du 17/09/2026",
+  "updated_at": "2026-09-18T05:59:22Z"
 }
