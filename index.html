@@ -543,14 +543,11 @@
             <input type="range" id="simYears" min="1" max="20" step="1" value="5">
             <output class="num" id="simYearsOut">5 ans</output>
           </label>
-          <div class="sim-profiles">
-            <span>Profil de rendement estimé</span>
-            <div class="sim-profile-btns" role="group" aria-label="Profil de rendement">
-              <button type="button" class="sim-profile-btn" data-rate="0.05">Prudent · 5%/an</button>
-              <button type="button" class="sim-profile-btn is-active" data-rate="0.08">Modéré · 8%/an</button>
-              <button type="button" class="sim-profile-btn" data-rate="0.12">Dynamique · 12%/an</button>
-            </div>
-          </div>
+          <label class="sim-field">
+            <span>Taux de rendement annuel estimé</span>
+            <input type="range" id="simRate" min="1" max="15" step="0.5" value="8">
+            <output class="num" id="simRateOut">8 %/an</output>
+          </label>
         </div>
 
         <div class="sim-result">
@@ -938,19 +935,20 @@
     var gainOut = document.getElementById('simGainOut');
     var barInvested = document.getElementById('simBarInvested');
     var barGain = document.getElementById('simBarGain');
-    var profileBtns = document.querySelectorAll('.sim-profile-btn');
-    if(!initial || !monthly || !years) return;
-
-    var rate = 0.08;
+    var rateInput = document.getElementById('simRate');
+    var rateOut = document.getElementById('simRateOut');
+    if(!initial || !monthly || !years || !rateInput) return;
 
     function fcfa(n){ return Math.round(n).toLocaleString('fr-FR') + ' FCFA'; }
+    function fmtRate(v){ return String(v).replace('.', ',') + ' %/an'; }
 
     function compute(){
       var P = Number(initial.value);
       var M = Number(monthly.value);
       var Y = Number(years.value);
+      var R = Number(rateInput.value);
       var n = Y * 12;
-      var mr = rate / 12;
+      var mr = (R / 100) / 12;
       var futureInitial = P * Math.pow(1 + mr, n);
       var futureMonthly = M > 0 ? M * ((Math.pow(1 + mr, n) - 1) / mr) : 0;
       var total = futureInitial + futureMonthly;
@@ -961,6 +959,7 @@
       monthlyOut.textContent = fcfa(M);
       yearsOut.textContent = Y + (Y > 1 ? ' ans' : ' an');
       yearsLabel.textContent = Y;
+      rateOut.textContent = fmtRate(R);
       totalEl.textContent = fcfa(total);
       investedOut.textContent = fcfa(invested);
       gainOut.textContent = fcfa(gain);
@@ -971,16 +970,8 @@
       barGain.style.width = gainPct + '%';
     }
 
-    [initial, monthly, years].forEach(function(el){
+    [initial, monthly, years, rateInput].forEach(function(el){
       el.addEventListener('input', compute);
-    });
-    profileBtns.forEach(function(btn){
-      btn.addEventListener('click', function(){
-        profileBtns.forEach(function(b){ b.classList.remove('is-active'); });
-        btn.classList.add('is-active');
-        rate = Number(btn.dataset.rate);
-        compute();
-      });
     });
 
     compute();
