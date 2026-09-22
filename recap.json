@@ -1,68 +1,28 @@
 {
-  "date": "2026-09-18",
-  "date_label": "Vendredi 18 septembre 2026",
-  "composite": 553.71,
-  "composite_change": 1.03,
-  "brvm30": 268.91,
-  "brvm30_change": 1.36,
-  "hausses": 8,
-  "baisses": 30,
-  "inchangees": 6,
-  "volume_fcfa": 4627361186,
+  "date": "2026-09-21",
+  "date_label": "Lundi 21 septembre 2026",
+  "composite": 544.68,
+  "composite_change": -1.63,
+  "brvm30": 263.82,
+  "brvm30_change": -1.89,
+  "hausses": 7,
+  "baisses": 29,
+  "inchangees": 8,
+  "volume_fcfa": 3936812457,
   "top_hausses": [
-    {
-      "code": "SNTS",
-      "pct": 7.49,
-      "cloture": 42190
-    },
-    {
-      "code": "TTLS",
-      "pct": 3.95,
-      "cloture": 3950
-    },
-    {
-      "code": "SAFC",
-      "pct": 3,
-      "cloture": 4980
-    },
-    {
-      "code": "SGBC",
-      "pct": 2.37,
-      "cloture": 38900
-    },
-    {
-      "code": "BICC",
-      "pct": 1.36,
-      "cloture": 31675
-    }
+    {"code": "SHEC", "pct": 4.71, "cloture": 2890},
+    {"code": "CIEC", "pct": 4.19, "cloture": 6720},
+    {"code": "ONTBF", "pct": 3.45, "cloture": 3000},
+    {"code": "SOGC", "pct": 0.51, "cloture": 7895},
+    {"code": "ABJC", "pct": 0.51, "cloture": 3950}
   ],
   "top_baisses": [
-    {
-      "code": "SDCC",
-      "pct": -7.48,
-      "cloture": 12485
-    },
-    {
-      "code": "SHEC",
-      "pct": -7.38,
-      "cloture": 2760
-    },
-    {
-      "code": "STAC",
-      "pct": -6.57,
-      "cloture": 2275
-    },
-    {
-      "code": "PRSC",
-      "pct": -3.91,
-      "cloture": 4305
-    },
-    {
-      "code": "TTLC",
-      "pct": -3.36,
-      "cloture": 3160
-    }
+    {"code": "STAC", "pct": -7.47, "cloture": 2105},
+    {"code": "SAFC", "pct": -7.43, "cloture": 4610},
+    {"code": "BOAM", "pct": -7.38, "cloture": 6210},
+    {"code": "SIVC", "pct": -6.67, "cloture": 2030},
+    {"code": "ORAC", "pct": -5.41, "cloture": 21000}
   ],
-  "source": "Bulletin Officiel de la Cote BRVM du 18/09/2026, recoupé avec brvm.org et brvmscreener.com",
-  "updated_at": "2026-09-20T00:00:00Z"
+  "source": "Bulletin Officiel de la Cote BRVM du 21/09/2026, recoupé avec brvm.org et brvmscreener.com",
+  "updated_at": "2026-09-22T21:58:00Z"
 }
