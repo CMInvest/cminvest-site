@@ -1,28 +1,25 @@
 {
-  "date": "2026-09-21",
-  "date_label": "Lundi 21 septembre 2026",
-  "composite": 544.68,
-  "composite_change": -1.63,
-  "brvm30": 263.82,
-  "brvm30_change": -1.89,
-  "hausses": 7,
-  "baisses": 29,
-  "inchangees": 8,
-  "volume_fcfa": 3936812457,
+  "date": "2026-09-23",
+  "date_label": "Mercredi 23 septembre 2026",
+  "composite": 516.29,
+  "composite_change": -3.66,
+  "brvm30": 250.21,
+  "brvm30_change": -3.65,
+  "hausses": 2,
+  "baisses": 41,
+  "inchangees": 2,
+  "volume_fcfa": 2359757704,
   "top_hausses": [
-    {"code": "SHEC", "pct": 4.71, "cloture": 2890},
-    {"code": "CIEC", "pct": 4.19, "cloture": 6720},
-    {"code": "ONTBF", "pct": 3.45, "cloture": 3000},
-    {"code": "SOGC", "pct": 0.51, "cloture": 7895},
-    {"code": "ABJC", "pct": 0.51, "cloture": 3950}
+    {"code": "FTSC", "pct": 4.71, "cloture": 2000},
+    {"code": "NEIC", "pct": 4.57, "cloture": 2405}
   ],
   "top_baisses": [
-    {"code": "STAC", "pct": -7.47, "cloture": 2105},
-    {"code": "SAFC", "pct": -7.43, "cloture": 4610},
-    {"code": "BOAM", "pct": -7.38, "cloture": 6210},
-    {"code": "SIVC", "pct": -6.67, "cloture": 2030},
-    {"code": "ORAC", "pct": -5.41, "cloture": 21000}
+    {"code": "CBIBF", "pct": -7.5, "cloture": 28675},
+    {"code": "CFAC", "pct": -7.5, "cloture": 1480},
+    {"code": "LNBB", "pct": -7.5, "cloture": 3700},
+    {"code": "NSBC", "pct": -7.49, "cloture": 20815},
+    {"code": "SMBC", "pct": -7.48, "cloture": 14710}
   ],
-  "source": "Bulletin Officiel de la Cote BRVM du 21/09/2026, recoupé avec brvm.org et brvmscreener.com",
-  "updated_at": "2026-09-22T21:58:00Z"
+  "source": "Bulletin Officiel de la Cote BRVM du 23/09/2026, recoupé avec brvm.org et brvmscreener.com",
+  "updated_at": "2026-09-24T19:12:00Z"
 }
